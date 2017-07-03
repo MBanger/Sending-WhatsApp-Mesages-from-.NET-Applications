@@ -1,0 +1,23 @@
+protected void btnConfirmCode_Click(object sender, EventArgs e)
+
+        {
+
+            if (!String.IsNullOrEmpty(this.txtConfirmCode.Text) && this.txtConfirmCode.Text.Length == 6)
+
+            {
+
+                string code = this.txtConfirmCode.Text;
+
+                this.password = WhatsAppApi.Register.WhatsRegisterV2.RegisterCode(this.txtMyPhone.Text, code);
+
+                if (!String.IsNullOrEmpty(this.password))
+
+                {
+
+                    ResponsePassword(password);
+
+                }
+
+            }
+
+        }
