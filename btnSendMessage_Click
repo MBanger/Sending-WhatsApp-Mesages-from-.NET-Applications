@@ -1,0 +1,45 @@
+protected void btnSendMessage_Click(object sender, EventArgs e)
+
+        {
+
+            WhatsAppApi.WhatsApp wa = new WhatsAppApi.WhatsApp(txtMyPhone.Text, txtPassword.Text, txtName.Text, false, false);
+
+            wa.OnConnectSuccess += () =>
+
+              {
+
+                  lblStatus.Text += "\nConnected...!\n";
+
+                  wa.OnLoginSuccess += (phoneNumber,data) =>
+
+                    {
+
+                        wa.SendMessage(txtPhoneNumber.Text, txtMessage.Text);
+
+                      
+
+                        lblStatus.Text += "\nMessage Sent...!\n";
+
+                    };
+
+                  wa.OnLoginFailed += (data) =>
+
+                  {
+
+                      lblStatus.Text += "\nLogin failed..."+data+" \n";
+
+                  };
+
+                  wa.Login();
+
+                };
+
+            wa.OnConnectFailed += (ex) => {
+
+                lblStatus.Text += "\nConnection failed...!\n";
+
+            };
+
+            wa.Connect();
+
+        }
