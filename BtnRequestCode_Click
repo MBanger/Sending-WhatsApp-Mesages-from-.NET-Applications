@@ -1,0 +1,29 @@
+protected void btnRequestCode_Click(object sender, EventArgs e)
+
+        {
+
+            if(WhatsAppApi.Register.WhatsRegisterV2.RequestCode(txtMyPhone.Text,out password, "sms"))
+
+            {
+
+                if (!string.IsNullOrEmpty(this.password))
+
+                {
+
+                    ResponsePassword(password);
+
+                }
+
+            }
+
+          
+
+        }
+
+private void  ResponsePassword(string password)
+
+        {
+
+            txtRegistartionPassword.Text = this.password;
+
+        }
